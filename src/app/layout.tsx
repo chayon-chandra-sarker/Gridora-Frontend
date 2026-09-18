@@ -3,6 +3,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Inter } from "next/font/google";
 import Providers from "@/providers";
+import { Toaster } from "@/components/ui/toast";
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
@@ -22,6 +23,7 @@ export default function RootLayout({
      <Providers>
        <body className="min-h-full flex flex-col">
         {children}
+        <Toaster />
       </body>
      </Providers>
     </html>
