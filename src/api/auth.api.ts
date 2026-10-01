@@ -1,8 +1,17 @@
 import apiClient from "@/lib/apiClient";
+import { LoginPayload, RegistrationPayload, VerifyAccountPayload } from "@/types";
 
 
-export function userLogin(payload: {email:string; password: string}){
+export function userLogin(payload: LoginPayload){
     return apiClient("/api/auth/login", {method:"POST", body:payload});
+};
+
+export function userVerifyAccount(payload: VerifyAccountPayload){
+    return apiClient("/api/auth/verify-otp", {method:"POST", body:payload});
+};
+
+export function userRegistration(payload: RegistrationPayload ){
+    return apiClient("/api/auth/register", {method:"POST", body:payload});
 };
 
 export function userLogout(){

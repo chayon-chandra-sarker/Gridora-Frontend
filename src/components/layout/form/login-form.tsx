@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "@/components/ui/toast";
 import { Spinner } from "@/components/ui/spinner";
 import { GoogleLogin } from "@react-oauth/google";
+import Link from "next/link";
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -283,12 +284,12 @@ const LoginForm = () => {
           <div className="mt-7 text-center">
             <p className="text-sm text-slate-400">
               Don't have an account?{" "}
-              <button
-                type="button"
+              <Link
+              href={"/register"}
                 className="font-semibold text-cyan-400 transition-colors hover:text-cyan-300"
               >
                 Create account
-              </button>
+              </Link>
             </p>
           </div>
 
