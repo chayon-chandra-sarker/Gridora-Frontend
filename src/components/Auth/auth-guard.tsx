@@ -1,0 +1,37 @@
+"use client"
+
+import { useGetMe } from '@/hooks';
+import { useRouter } from 'next/navigation';
+import React, { ReactNode, useEffect } from 'react';
+import AuthLoading from './auth-loading';
+
+const AuthGuard = ({children}:{children:ReactNode}) => {
+    const router = useRouter();
+    const {data, isPending, isError}= useGetMe();
+    
+    const user =  data?.data;
+    useEffect(() => {
+        if(isPending){
+            return
+        };
+
+        if(isError || ! user) {
+            router.replace("/login")
+        }
+    },[isPending, isError, user, router]);
+
+    if(isPending){
+        return <AuthLoading></AuthLoading>
+    };
+    
+    if(isError || ! user){
+        return <AuthLoading label='Redirecting...'></AuthLoading>
+    };
+    return (
+        <>
+            {children}
+        </>
+    );
+};
+
+export default AuthGuard;
